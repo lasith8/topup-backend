@@ -86,19 +86,7 @@ app.post('/api/place-order', async (req, res) => {
     }
 });
 
-// 3. SMS Forwarder එකෙන් එන SMS ලබාගැනීම (Webhook API)
-app.post('/api/sms-webhook', (req, res) => {
-    // App එකෙන් සර්වර් එකට එවන SMS විස්තර ලබාගැනීම
-    const smsText = req.body.message || req.body.text || "";
-    const sender = req.body.sender || req.body.from || "";
-
-    console.log(`[SMS Received] From: ${sender} | Message: ${smsText}`);
-
-    // මේ SMS එකේ තියෙන Reference අංකය පරීක්ෂා කරන කේතය අපි ඊළඟට මෙතන ලියනවා
-
-    // SMS එක සාර්ථකව ලැබුණු බව App එකට දැනුම් දීම
-    res.status(200).json({ success: true, message: "SMS Received Successfully" });
-});
+module.exports = app;
 
 app.listen(PORT, () => {
     console.log(`Auto Top-up Server එක http://localhost:${PORT} හි ධාවනය වේ...`);
